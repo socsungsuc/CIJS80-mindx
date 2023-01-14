@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "form-request">
+        <form>
+            <div class="add">
+                <input type="text" placeholder="Name" id="name">
+                <input type="text" placeholder="Phone Number" id="phone">
+                <input type="submit" value="ADD" onclick="event.preventDefault(); ClickToADD()">
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Search" id="searchIn4" >
+                <input type="submit" value="FIND" onclick="event.preventDefault(); ClickToFIND()">
+                <input type="submit" value="REMOVE" onclick="event.preventDefault(); ClickToRemove()">
+            </div>
+        </form>
+    </div>
+    <div id="result"></div>
+    <script>
+        var user_arr = [];
+        var i = 0;
+        function ClickToADD(){
+            var Name = document.getElementById('name').value;
+            var Phone = document.getElementById('phone').value;
+
+            user_arr[i] = Name + "   " + Phone; i++;
+            user_arr.sort();
+
+            var result = document.getElementById('result');
+            if (result.innerHTML != "") result.innerHTML = "";
+            for (let k = 0; k < user_arr.length; k++){
+                result.innerHTML += "<p>" + user_arr[k] + "</p>";
+            }
+        }
+
+        function sokhopchuoi(a, b){
+                var n = a.length;
+                var m = b.length;
+                for (var k = 0; k <= n-m; k++){
+                    if (a[k] === b[0])
+                    {
+                        for (var h = 0; h < m; h++){
+                            if (a[k+h] != b[h])
+                                return -1;
+                            if (h === m-1) return 1;
+                        }
+                    }
+                }
+        }
+
+        var userfind_arr = [];
+        var j = 0;
+        function ClickToFIND(){
+            let In4 = document.getElementById('searchIn4').value;
+
+            for (let k = 0; k < user_arr.length; k++){
+                if (sokhopchuoi(user_arr[k],In4) == 1)
+                {
+                    userfind_arr[j] = user_arr[k];
+                    j++;
+                }
+
+            } 
+            var result = document.getElementById('result');
+            if (result.innerHTML != "") result.innerHTML = "";
+            for (let k = 0; k < userfind_arr.length; k++){
+                result.innerHTML += "<p>" + userfind_arr[k] + "</p>";
+            }
+            userfind_arr = [];
+            j = 0;
+        }
+
+        var userphone_arr = [];
+        function ClickToRemove(){
+            //Da em chua lam duoc
+        }
+
+    </script>
+</body>
+</html>
