@@ -1,0 +1,1 @@
+# CIJS80-mindx
